@@ -35,10 +35,6 @@ def addRep(word):
                 w = w + ans_list.conv_dic[w[-1]]
             word_list.append(w)
             return 1
-    #リストにワードを追加
-        #word_list.append(Shiri)
-    #ListBox1.insert(tk.END, 'Shiri:' + Shiri)
-
 
 
 
@@ -55,15 +51,16 @@ def GetWord():
         word=str(word_e.get())
         return word
     else:
-        ListBox1.insert(END, '文字が入力してね!')
-        raise ValueError("文字が入力してね!")
+        ListBox1.insert(END, '文字を入力してね!')
+        raise ValueError("文字を入力してね!")
 
 
 
 #しりとりが成立しているかチェック
 def check_siritori(word):
-    global done
+    global done, count
     done = 0
+    count = 0
     #ワードを取得
     word=GetWord()
     #カタカナ・ひらがなをチェック
@@ -71,14 +68,15 @@ def check_siritori(word):
         #最初のワードの場合
         if word_list==[]:
             word_list.append(word)
+            count = 1
         #最初の文字としりとりの最後の文字が一致する場合
         elif word[0] == word_list[-1][-1]:
             if word in word_list:
-                ListBox1.insert(END, 'それ前に使ったよ?')
+                ListBox1.insert(END, 'それ前に使ったで?')
                 raise ValueError("それ前に使ったよ?")
 
             if not word in ans_list.word_list:
-                ListBox1.insert(END, 'そんな名前のポケモンはいないよ？')
+                ListBox1.insert(END, 'そんな名前のポケモンはおらんで？')
                 raise ValueError("そんな名前のポケモンはいないよ？")
 
             #lbl_p["text"] = word + '!'
@@ -86,30 +84,35 @@ def check_siritori(word):
             print(mysay)
             ListBox1.insert(END, mysay)
             ListBox1.pack()
+            ans_list.word_list.remove(word)
             if word[-1] == "ー":
                 word = word[:-1]
             if word[-1] in ans_list.conv_dic:
                 word = word + ans_list.conv_dic[word[-1]]
             #リストにワードを追加
             word_list.append(word)
-            ans_list.word_list.remove(word)
-            done += 1
-
 
         else:
-            ListBox1.insert(END, 'しりとりになってないよ!')
+            ListBox1.insert(END, 'しりとりになってないよ！')
             raise ValueError("しりとりになってないよ!")
 
         #最後の文字が「ん」になっている場合
         if word[-1]=="ん" or word[-1]=="ン":
-            ListBox1.insert(END, '「ん」がついちゃったね!')
-            raise ValueError("「ん」がついちゃったね!")
+            ListBox1.insert(END, '「ン」がついちゃったね！')
+            count = int(((len(word_list)+1) / 2) - 1)
+            var = StringVar()
+            var.set("あなたの記録：" + str(count) + "回")
+            Counter = Label(textvariable=var, background='#FB1515', height=2)
+            Counter.place(x=220, y=530)
+
+            raise ValueError("「ン」がついちゃったね!")
         
     else:
-        ListBox1.insert(END, 'もう一度入力してね!')
+        ListBox1.insert(END, 'もっかい入力してな！')
         raise ValueError("もう一度入力してね!")
-    print("ここまで")
     if addRep(word) == 1:
+        print(len(word_list))
+        print(count)
         print("addRep完了")
         print(word_list)
 
@@ -132,7 +135,7 @@ if __name__=='__main__':
 
     #入力欄の設定
     word=0#入力欄に入れる文字
-    word_e=Entry(win,width=20,font=('Verdana',10))#入力欄の設定
+    word_e=Entry(win,width=25,font=('Verdana',10))#入力欄の設定
     word_e.place(x=130,y=50)#入力欄の位置
     word_list = ['AI: シリトリ']  #リスト、初期ワードの設定
 
@@ -140,8 +143,10 @@ if __name__=='__main__':
     txt = StringVar(value=word_list)
     ListBox1 = Listbox(frame, listvariable=txt, width=100, height=200)
     ListBox1.insert(0, '「しりとり」の「り」からスタート!')
+  
 
     #スクロールバーの生成・配置
+    count = 0
     scrollbar = ttk.Scrollbar(frame, orient=VERTICAL, command=ListBox1.yview)
     scrollbar.pack(fill='y', side='right')
 
@@ -150,6 +155,12 @@ if __name__=='__main__':
     Button1.bind("<Button-1>", check_siritori)
     Button1.place(x=125, y=0)
     ListBox1.pack()
+
+
+    #カウンター用ボックス
+    #count = int(len(word_list))
+     
+
 
     #ボタンの作成
     Button2 = Button(win, text='おわり')

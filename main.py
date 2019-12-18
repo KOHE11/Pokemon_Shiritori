@@ -125,7 +125,7 @@ if __name__=='__main__':
     #フィールド作成
     win=Tk()
     win.title('しりとりげええぇぇぇぇえむ')
-    win.geometry('500x600')
+    win.geometry('550x600')
     #done = 0  #しりとりが続いた回数
     frame = Frame(win, width=300, height=300, bg="white")
     frame.pack(padx=130, pady=100)

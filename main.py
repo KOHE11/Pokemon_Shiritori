@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 from tkinter import *
-from modules import ans_list
+import ans_list
 import tkinter.ttk as ttk
 import time
 
@@ -73,11 +73,13 @@ def check_siritori(word):
             word_list.append(word)
         #最初の文字としりとりの最後の文字が一致する場合
         elif word[0] == word_list[-1][-1]:
-            for words in word_list:
-                #リスト内のワードと重複する場合
-                if words==word:
-                    ListBox1.insert(END, 'それ前に使ったよ?')
-                    raise ValueError("それ前に使ったよ?")
+            if word in word_list:
+                ListBox1.insert(END, 'それ前に使ったよ?')
+                raise ValueError("それ前に使ったよ?")
+
+            if not word in ans_list.word_list:
+                ListBox1.insert(END, 'そんな名前のポケモンはいないよ？')
+                raise ValueError("そんな名前のポケモンはいないよ？")
 
             #lbl_p["text"] = word + '!'
             mysay = 'あなた: ' + word

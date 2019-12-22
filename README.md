@@ -1,7 +1,7 @@
 Pokemon_Shiritori
 ====
 
-Word Chain Game only using Poemon name
+Word chain game only using Poemon name
 
 ## Install
 $ sudo apt-get install python3-tk

@@ -1,5 +1,6 @@
 # -*- coding:utf-8 -*-
 from tkinter import *
+import random
 import ans_list
 import tkinter.ttk as ttk
 import time
@@ -125,6 +126,8 @@ if __name__=='__main__':
     hiragana = "ぁあぃいぅうぇえぉおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらりるれろゎわゐゑをんー"
     katakana = "ァアィイゥウェエォオカガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモャヤュユョヨラリルレロヮワヰヱヲンヴ"
 
+
+    random.shuffle(ans_list.word_list) 
     #フィールド作成
     win=Tk()
     win.title('しりとりげええぇぇぇぇえむ')

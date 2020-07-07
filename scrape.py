@@ -10,8 +10,9 @@ for i in range(1, 891):
     soup = BeautifulSoup(response, "lxml")
     name = soup.find('title').get_text()
     response.close()
-    print(name.split('｜')[0])
-    l.append(name.split('｜')[0] + '\n')
+    name = name.split('｜')[0].split(" ")[0] 
+    print(name)
+    l.append(name + '\n')
 
 with open('pk_list.txt', mode='w') as f:
     for i in range(len(l)):

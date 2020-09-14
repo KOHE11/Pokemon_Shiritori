@@ -1,11 +1,29 @@
 Pokemon_Shiritori
 ====
 
-Word chain game only using Poemon name
+Word chain game only using Pokemon name
 
-## Install
-$ sudo apt-get install python3-tk
+## Environment
+- ubuntu18.04
+- Python 3.6.9
+
+## Installation
+
+- Tkinter
+```
+$ sudo apt install python3-tk
+```
 ## Usage
+- clone this repository
+```
 $ git clone https://github.com/Kohei-Ogino/Pokemon_Shiritori.git   
-$ cd Pokemon_Shiritori/  
+$ cd Pokemon_Shiritori/ 
+```
+- scraping to get Pokemon name
+```
+$ python3 scrape.py   
+```
+ - play game
+ ```
 $ python3 main.py
+```

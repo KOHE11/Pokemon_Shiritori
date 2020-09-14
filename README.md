@@ -27,3 +27,6 @@ $ python3 scrape.py
  ```
 $ python3 main.py
 ```
+
+## LICENSE
+https://github.com/KOHE11/Pokemon_Shiritori/blob/master/LICENSE

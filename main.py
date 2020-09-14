@@ -20,12 +20,12 @@ def addRep(word):
     word = list(word)
     print(word)
     word_gobi = word[-1]
-    for w in ans_list.word_list:
+    for w in pk:
         if w[-1][-1] == 'ン':
             continue
         tmp = list(w)
         if word_gobi == tmp[0]:
-            ans_list.word_list.remove(w)
+            pk.remove(w)
             print(w)
             AIsay = "AI:" + w
             ListBox1.insert(END, AIsay)
@@ -76,7 +76,7 @@ def check_siritori(word):
                 ListBox1.insert(END, 'それ前に使ったで?')
                 raise ValueError("それ前に使ったよ?")
 
-            if not word in ans_list.word_list:
+            if not word in pk:
                 ListBox1.insert(END, 'そんな名前のポケモンはおらんで？')
                 raise ValueError("そんな名前のポケモンはいないよ？")
 
@@ -85,7 +85,7 @@ def check_siritori(word):
             print(mysay)
             ListBox1.insert(END, mysay)
             ListBox1.pack()
-            ans_list.word_list.remove(word)
+            pk.remove(word)
             if word[-1] == "ー":
                 word = word[:-1]
             if word[-1] in ans_list.conv_dic:
@@ -122,12 +122,19 @@ def check_siritori(word):
 
 
 if __name__=='__main__':
+    pk = []
+    f = open('pk_list.txt', 'r')
+    line = f.readline()
+    while line:
+        pk.append(line.replace('\n', ''))
+        line = f.readline()
+    print(pk)
     #日本語チェック用
     hiragana = "ぁあぃいぅうぇえぉおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらりるれろゎわゐゑをんー"
     katakana = "ァアィイゥウェエォオカガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモャヤュユョヨラリルレロヮワヰヱヲンヴ"
 
 
-    random.shuffle(ans_list.word_list) 
+    random.shuffle(pk) 
     #フィールド作成
     win=Tk()
     win.title('しりとりげええぇぇぇぇえむ')

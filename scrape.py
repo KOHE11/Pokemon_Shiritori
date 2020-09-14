@@ -2,7 +2,7 @@ from urllib import request
 from bs4 import BeautifulSoup
 
 l = []
-for i in range(1, 891):
+for i in range(1, 894):
     i = str(i).zfill(3)
     print(i)
     url = 'https://zukan.pokemon.co.jp/detail/' + i

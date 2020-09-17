@@ -9,10 +9,16 @@ Word chain game only using Pokemon name
 
 ## Installation
 
-- Tkinter
+- Tkinter (ubuntu)
 ```
 $ sudo apt install python3-tk
 ```
+
+- Packages
+```
+$ pip install requirements.txt
+```
+
 ## Usage
 - clone this repository
 ```

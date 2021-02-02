@@ -15,8 +15,14 @@ $ sudo apt install python3-tk
 ```
 
 - Packages
+
+
 ```
+# pip
 $ pip install requirements.txt
+
+# pipenv
+$ pipenv install
 ```
 
 ## Usage

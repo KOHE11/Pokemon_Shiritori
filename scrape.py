@@ -2,6 +2,7 @@ from urllib import request
 from tqdm import tqdm
 from bs4 import BeautifulSoup
 import time
+import transform
 
 def scrape_pk(pk_num):
     l = []
@@ -14,14 +15,14 @@ def scrape_pk(pk_num):
         soup = BeautifulSoup(response, "lxml")
         name = soup.find('title').get_text()
         response.close()
-        name = name.split('｜')[0].split(" ")[0] 
+        name = name.split('｜')[0].split(" ")[0]
+        name = transform.trans_word(name)
         l.append(name + '\n')
         bar.update(1)
 
     with open('pk_list.txt', mode='w') as f:
         for i in range(len(l)):
             f.write(l[i])
-    # print('Created: pk_list.txt')
 
 if __name__=='__main__':
     scrape_pk(898)
